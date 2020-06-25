@@ -1,0 +1,101 @@
+CC = gcc9
+CXX = g++9
+
+GCC_VERSION = $(shell $(CC) --version 2>&1 | grep "(GCC)" | cut -d' ' -f3  | cut -d'.' -f1)
+ARCHITECTURAL = $(shell file /bin/ls | cut -d' ' -f3 | cut -d'-' -f1)
+PLATFORM = 32
+BSD_VERSION = $(shell uname -v 2>&1 | cut -d' ' -f2 | cut -d'.' -f1)
+# ARCHITECTURAL := $(shell uname -p)
+
+OBJDIR = .obj
+$(shell if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi)
+
+#C - C++ Dialect Flags
+CCFLAGS = -std=c2x
+CPPFLAGS = -std=c++2a
+# CPPFLAGS += -faligned-new -fcheck-new -fconcepts -fsized-deallocation -fstrict-enums -fstrong-eval-order -fno-threadsafe-statics
+
+#Kind Of Output Flags
+CFLAGS = -pipe
+
+#Warning Flags
+CFLAGS += -Wall -Wextra -Wdouble-promotion -Wno-unused-parameter -Wno-ignored-qualifiers -Wno-double-promotion
+
+#Debug Flags
+CFLAGS += -g -ggdb
+
+#Optimization Flags
+CFLAGS += -O2
+
+#Program Instrumentation Flags
+CFLAGS += -fstack-protector-all
+
+#Preprocessor Flags
+CFLAGS += -pthread
+
+#Code Generation Flags
+CFLAGS += -fexceptions
+
+# Define Flags
+CFLAGS += -D__USER__=\"$(USER)\" -D__HOSTNAME__=\"$(HOSTNAME)\" -D__PWD__=\"$(PWD)\" -D_THREAD_SAFE -DNDEBUG 
+
+#Machine-Dependent Flags
+CFLAGS += -m32
+# ifeq ($(ARCHITECTURAL), 64)
+CFLAGS += -L/usr/local/lib32/gcc9 -rpath=/usr/local/lib32/gcc9
+# endif
+
+CPPS = $(wildcard *.cpp)
+CS = $(wildcard *.c)
+DEPS = $(patsubst %.cpp,$(OBJDIR)/%.d,$(CPPS))
+DEPS += $(patsubst %.c,$(OBJDIR)/%.d,$(CS))
+OBJFILES = $(patsubst %.cpp,$(OBJDIR)/%.o,$(CPPS))
+OBJFILES += $(patsubst %.c,$(OBJDIR)/%.o,$(CS))
+
+default: $(BIN)
+
+clean:
+	rm -f $(OBJFILES)
+	rm -f $(DEPS)
+	rm -f $(BIN)
+
+$(BIN): $(OBJFILES)
+	@echo linking $(BIN)
+ifeq ($(RAN_LIB), 1)
+		if [ ! -d $(BIN_DIR) ]; then mkdir $(BIN_DIR); fi
+		gcc-ar9 cru $(BIN) $(LIBDIR) $(OBJFILES) $(LIBS)
+		gcc-ranlib9 $(BIN)
+else
+		@$(CXX) $(CPPFLAGS) $(CFLAGS) $(LIBDIR) $(OBJFILES) $(LIBS) -o $(BIN)
+endif
+	chmod 777 $(BIN)
+
+$(OBJDIR)/%.o: %.c
+	@echo compiling $<
+	@$(CC) $(CCFLAGS) $(CFLAGS) $(INCDIR) -c $< -o $@
+	@$(CC) -MM -MG -MP $(CCFLAGS) $(CFLAGS) $(INCDIR) -c $< -o $(OBJDIR)/$*.d
+	@sed -i '' -e's/$*.o:/$(OBJDIR)\/$*.o:/g' $(OBJDIR)/$*.d
+
+$(OBJDIR)/%.o: %.cpp
+	@echo compiling $<
+	@$(CXX) $(CPPFLAGS) $(CFLAGS) $(INCDIR) -c $< -o $@
+	@$(CXX) -MM -MG -MP $(CPPFLAGS) $(CFLAGS) $(INCDIR) -c $< -o $(OBJDIR)/$*.d
+	@sed -i '' -e's/$*.o:/$(OBJDIR)\/$*.o:/g' $(OBJDIR)/$*.d
+
+ver:
+	@$(CXX) -v
+
+tag:
+	ctags *.cpp *.h *.c
+
+dump:
+	@$(CXX) -dM -E - < /dev/null > .nope.nope
+
+symlink:
+	@ln -fs $(BIN) $(BIN)_symlink
+
+strip:
+	@cp $(BIN) $(BIN)
+	@strip $(BIN)
+
+sinclude $(DEPS)

@@ -1,0 +1,76 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+#*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+*.oei
+*.oep
+#*.mp3
+*.tlog
+*.vs
+*.log
+*.pdb
+*.sbr
+*.ilk
+*.bsc
+*.res
+*.exp
+*.iobj
+*.ipdb
+*.cod
+*.map
+*.sdf
+*.suo
+*.ipch
+*.7z
+*cryptopp.lib
+*cryptopp_d.lib
+*CWebBrowser.lib
+*EffectLib.lib
+*EterBase.lib
+*EterGrnLib.lib
+*EterImageLib.lib
+*EterLib.lib
+*EterLocale.lib
+*EterPack.lib
+*EterPythonLib.lib
+*GameLib.lib
+*MilesLib.lib
+*ScriptLib.lib
+*SpeedTreeLib.lib
+*SphereLib.lib
+*PRTerrainLib.lib
+*Metin2Release.lib
+*Metin2Distribute.lib
+*log.txt
+*syserr.txt
+*.opensdf
+*lzo.lib
+*.v12
