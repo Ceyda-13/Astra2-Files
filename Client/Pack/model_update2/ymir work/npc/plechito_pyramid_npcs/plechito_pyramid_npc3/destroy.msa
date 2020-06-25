@@ -1,0 +1,30 @@
+ScriptType               MotionData
+
+MotionFileName           "D:\ymir work\npc\plechito_pyramid_npcs\plechito_pyramid_npc3\destroy.GR2"
+MotionDuration           5.000000
+
+Group MotionEventData
+{
+    MotionEventDataCount     2
+    Group Event00
+    {
+        MotionEventType      1
+        StartingTime         0.135547
+        
+        IndependentFlag      0
+        AttachingEnable      0
+        AttachingBoneName    "plechito_pyramid_npc2"
+        FollowingEnable      0
+        EffectFileName       "d:/ymir work/effect/plechito/npc/pyramid_npc3_dead.mse"
+        EffectPosition       0.000000 0.000000 200.000000
+    }
+    Group Event01
+    {
+        MotionEventType      2
+        StartingTime         0.135547
+        
+        DuringTime           0.2057452
+        Power                70
+        AffectingRange       1200
+    }
+}

@@ -1,0 +1,38 @@
+BoundingSphereRadius   500.000000
+BoundingSpherePosition 0.000000 -50.000000 200.000000
+
+Group Mesh
+{
+    StartTime           0.000000
+    List TimeEventPosition
+    {
+        0.000000 "MOVING_TYPE_DIRECT" 0.000000 0.000000 0.000000
+    }
+    
+    MeshFileName               	"p_pyramid_monster7_attack00.mde"
+    MeshAnimationLoopEnable    	0
+    MeshAnimationLoopCount     	0
+    MeshAnimationFrameDelay    	0.020000
+    
+    MeshElementCount           	1
+    Group MeshElement00
+    {
+        BillboardType              	0
+        BlendingEnable             	1
+        BlendingSrcType            	5
+        BlendingDestType           	2
+        
+        TextureAnimationLoopEnable 	1
+        TextureAnimationFrameDelay 	0.020000
+        TextureAnimationStartFrame 	0
+        
+        ColorOperationType         	4
+        ColorFactor                	0.003922 0.631373 0.819608 1.000000
+        List TimeEventAlpha
+        {
+            0.000000 0.700000
+            0.200000 0.700000
+            0.230000 0.000000
+        }
+    }
+}

@@ -1,0 +1,23 @@
+ScriptType               MotionData
+
+MotionFileName           "D:\ymir work\npc\plechito_pyramid_npcs\plechito_pyramid_npc6\destroy.GR2"
+MotionDuration           3.666667
+
+Group MotionEventData
+{
+    MotionEventDataCount     2
+    Group Event00
+    {
+        MotionEventType      8
+        StartingTime         3.308974
+    }
+    Group Event01
+    {
+        MotionEventType      2
+        StartingTime         0.135547
+        
+        DuringTime           0.4057452
+        Power                120
+        AffectingRange       4500
+    }
+}

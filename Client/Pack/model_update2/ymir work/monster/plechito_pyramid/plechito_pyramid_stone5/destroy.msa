@@ -1,0 +1,42 @@
+ScriptType               MotionData
+
+MotionFileName           "D:\ymir work\monster\plechito_pyramid\plechito_pyramid_stone5\destroy.GR2"
+MotionDuration           5.333333
+
+Group MotionEventData
+{
+    MotionEventDataCount     3
+    Group Event00
+    {
+        MotionEventType      1
+        StartingTime         0.135547
+        
+        IndependentFlag      0
+        AttachingEnable      0
+        AttachingBoneName    "plechito_pyramid_stone5"
+        FollowingEnable      0
+        EffectFileName       "d:/ymir work/effect/plechito/monster/p_pyramid_stone5_destroy.mse"
+        EffectPosition       0.000000 0.000000 340.000000
+    }
+    Group Event01
+    {
+        MotionEventType      2
+        StartingTime         0.135547
+        
+        DuringTime           0.2057452
+        Power                70
+        AffectingRange       3200
+    }
+    Group Event02
+    {
+        MotionEventType      1
+        StartingTime         0.835547
+        
+        IndependentFlag      0
+        AttachingEnable      0
+        AttachingBoneName    "plechito_pyramid_stone5"
+        FollowingEnable      0
+        EffectFileName       "d:/ymir work/effect/plechito/monster/p_pyramid_stone5_destroy2.mse"
+        EffectPosition       0.000000 0.000000 0.000000
+    }
+}
