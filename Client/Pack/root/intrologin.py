@@ -149,7 +149,7 @@ class LoginWindow(ui.ScriptWindow):
 				
 			for (action, button) in self.panelButton.items():
 				button.SetEvent(ui.__mem_func__(self.MainBoard), action)
-				# button.SetText("Çikis")
+				# button.SetText("Ã‡ikis")
 
 			# self.GetChild("serv1t").SetText(serverInfo.SRVS[1]["name"])
 			# self.GetChild("serv2t").SetText(serverInfo.SRVS[2]["name"])
@@ -247,14 +247,7 @@ class LoginWindow(ui.ScriptWindow):
 		channelDict = serverInfo.REGION_DICT[0][SERVER]["channel"]
 		authDict = serverInfo.REGION_AUTH_SERVER_DICT[0][SERVER]
 		markDict = serverInfo.MARKADDR_DICT[SERVER * 10]
-		number = app.GetRandom(0, 9)
-		number2 = app.GetRandom(0, 27)
-		port = authDict["port"]
-		port += (number * 2)
-		port2 = channelDict[CHANNEL]["tcp_port"]
-		port2 += (number2 * 2)
-		# print "Port: %d %d\n" % (port, port2)
-		self.stream.SetConnectInfo(channelDict[CHANNEL]["ip"], port2, authDict["ip"], port)
+		self.stream.SetConnectInfo(channelDict[CHANNEL]["ip"], channelDict[CHANNEL]["tcp_port"], authDict["ip"], authDict["port"])
 		net.SetMarkServer(markDict["ip"], markDict["tcp_port"])
 		app.SetGuildMarkPath(markDict["mark"])
 		app.SetGuildSymbolPath(markDict["symbol_path"])
@@ -313,7 +306,7 @@ class LoginWindow(ui.ScriptWindow):
 		# if self.AccButtons[i][1] == "Empty Slot":
 		if not GetReg("id%d" % i) and not GetReg("pwd%d" % i):		
 			if self.idEditLine.GetText() == "" or self.pwdEditLine.GetText() == "":
-				self.PopupNotifyMessage("Lütfen Id ve Sifre Girin", self.EmptyFunc)
+				self.PopupNotifyMessage("LÃ¼tfen Id ve Sifre Girin", self.EmptyFunc)
 				return
 
 			SetReg("id%d" % i, str(binascii.b2a_base64(self.idEditLine.GetText())))
